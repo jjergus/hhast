@@ -152,6 +152,14 @@ class MigrationCLI extends CLIWithRequiredArguments {
       ),
       CLIOptions\flag(
         () ==> {
+          $this->migrations[] = HHAST\AsyncifyEntryPointMigration::class;
+        },
+        'Convert <<__EntryPoint>> functions to async if they contain any '.
+        'Asio\\join',
+        '--asyncify-entry-point',
+      ),
+      CLIOptions\flag(
+        () ==> {
           $this->migrations[] = AddFixmesMigration::class;
         },
         'Add /* HH_FIXME[] */ comments where needed',
