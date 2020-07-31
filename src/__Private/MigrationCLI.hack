@@ -152,6 +152,14 @@ class MigrationCLI extends CLIWithRequiredArguments {
       ),
       CLIOptions\flag(
         () ==> {
+          $this->migrations[] = HHAST\RedundantEntryPointMigration::class;
+        },
+        'Merge <<__EntryPoint>>s that just call another function with that '.
+        'function (RISKY! manual review and testing required)',
+        '--redundant-entry-point',
+      ),
+      CLIOptions\flag(
+        () ==> {
           $this->migrations[] = AddFixmesMigration::class;
         },
         'Add /* HH_FIXME[] */ comments where needed',
